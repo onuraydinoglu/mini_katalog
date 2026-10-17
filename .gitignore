@@ -1,0 +1,63 @@
+# Dart / Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+
+# Dart documentation
+doc/api/
+
+# Environment / secrets
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+*.key
+key.properties
+
+# Android
+android/.gradle/
+android/captures/
+android/local.properties
+android/key.properties
+android/.cxx/
+*.apk
+*.aab
+
+# iOS / macOS
+**/Pods/
+**/.symlinks/
+**/Flutter/ephemeral/
+**/Flutter/Generated.xcconfig
+**/Flutter/flutter_export_environment.sh
+**/Flutter/App.framework
+**/Flutter/Flutter.framework
+**/Flutter/Flutter.podspec
+**/DerivedData/
+*.ipa
+
+# IDE / Editor
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+*.iml
+
+# Operating system
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Preserve dependency lockfile
+!pubspec.lock
