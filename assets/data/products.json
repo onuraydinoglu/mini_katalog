@@ -1,0 +1,51 @@
+
+[
+  {
+    "id": 1,
+    "title": "Kablosuz Kulaklık",
+    "description": "Günlük kullanım için kablosuz kulaklık.",
+    "price": 1299.90,
+    "category": "Elektronik",
+    "image": "assets/images/kulaklik.png"
+  },
+  {
+    "id": 2,
+    "title": "Akıllı Saat",
+    "description": "Aktivite takibi yapabilen akıllı saat.",
+    "price": 2499.00,
+    "category": "Elektronik",
+    "image": "assets/images/saat.png"
+  },
+  {
+    "id": 3,
+    "title": "Sırt Çantası",
+    "description": "Günlük kullanıma uygun sırt çantası.",
+    "price": 799.50,
+    "category": "Aksesuar",
+    "image": "assets/images/canta.png"
+  },
+  {
+    "id": 4,
+    "title": "Masa Lambası",
+    "description": "Modern tasarımlı LED masa lambası.",
+    "price": 549.90,
+    "category": "Ev & Yaşam",
+    "image": "assets/images/lamba.png"
+  },
+  {
+    "id": 5,
+    "title": "Bluetooth Hoparlör",
+    "description": "Taşınabilir kablosuz hoparlör.",
+    "price": 1699.00,
+    "category": "Elektronik",
+    "image": "assets/images/hoparlor.png"
+  },
+  {
+    "id": 6,
+    "title": "Termos",
+    "description": "İçecek sıcaklığını koruyan çelik termos.",
+    "price": 449.90,
+    "category": "Ev & Yaşam",
+    "image": "assets/images/termos.png"
+  }
+]
