@@ -78,37 +78,33 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(height: 24),
-            Container(
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'YENİ KOLEKSİYON',
-                    style: TextStyle(color: Colors.white70),
-                  ),
-                  SizedBox(height: 12),
-                  Text(
-                    'Aradığın ürünler tek yerde.',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.network(
+                'https://wantapi.com/assets/banner.png',
+                width: double.infinity,
+                height: 180,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    height: 180,
+                    color: Theme.of(context).colorScheme.primary,
+                    alignment: Alignment.center,
+                    child: const Text(
+                      'Mini Katalog',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Kataloğumuzu keşfet.',
-                    style: TextStyle(color: Colors.white70),
-                  ),
-                ],
+                  );
+                },
               ),
             ),
             const SizedBox(height: 28),
+
             const Text(
               'Öne Çıkan Ürünler',
               style: TextStyle(
@@ -117,6 +113,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(height: 16),
+
             FutureBuilder<List<Product>>(
               future: _productsFuture,
               builder: (context, snapshot) {
