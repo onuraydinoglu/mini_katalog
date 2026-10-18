@@ -48,7 +48,9 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text(
           'Mini Katalog',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: false,
         actions: [
@@ -77,25 +79,34 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+
             const SizedBox(height: 24),
 
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16),
+            // Banner görseli
+            Container(
+              width: double.infinity,
+              height: 100,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 10,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                  color: Theme.of(context).colorScheme.outlineVariant,
+                ),
+              ),
               child: Image.network(
                 'https://wantapi.com/assets/banner.png',
-                width: double.infinity,
-                height: 180,
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
                 errorBuilder: (context, error, stackTrace) {
-                  return Container(
-                    height: 180,
-                    color: Theme.of(context).colorScheme.primary,
-                    alignment: Alignment.center,
-                    child: const Text(
+                  return Center(
+                    child: Text(
                       'Mini Katalog',
                       style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24,
+                        color: Theme.of(context).colorScheme.primary,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -103,6 +114,7 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
+
             const SizedBox(height: 28),
 
             const Text(
@@ -112,6 +124,7 @@ class _HomePageState extends State<HomePage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
+
             const SizedBox(height: 16),
 
             FutureBuilder<List<Product>>(
