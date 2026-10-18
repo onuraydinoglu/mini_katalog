@@ -5,10 +5,12 @@ import 'package:mini_katalog/features/products/pages/product_detail_page.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
+  final void Function(Product) onAddToCart;
 
   const ProductCard({
     super.key,
     required this.product,
+    required this.onAddToCart,
   });
 
   @override
@@ -23,6 +25,7 @@ class ProductCard extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => ProductDetailPage(
               product: product,
+              onAddToCart: onAddToCart,
             ),
           ),
         );

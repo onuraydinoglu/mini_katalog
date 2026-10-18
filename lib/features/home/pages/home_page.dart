@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:mini_katalog/features/cart/pages/cart_page.dart';
 import 'package:mini_katalog/features/products/data/product_repository.dart';
 import 'package:mini_katalog/features/products/models/product.dart';
 import 'package:mini_katalog/features/products/widgets/product_card.dart';
@@ -13,12 +14,32 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late final Future<List<Product>> _productsFuture;
+
   String _searchQuery = '';
+
+  final List<Product> _cartProducts = [];
 
   @override
   void initState() {
     super.initState();
     _productsFuture = const ProductRepository().getProducts();
+  }
+
+  void _addToCart(Product product) {
+    setState(() {
+      _cartProducts.add(product);
+    });
+  }
+
+  void _openCart() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => CartPage(
+          products: _cartProducts,
+        ),
+      ),
+    );
   }
 
   @override
@@ -32,7 +53,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: false,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: _openCart,
             tooltip: 'Sepet',
             icon: const Icon(Icons.shopping_bag_outlined),
           ),
@@ -57,7 +78,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(height: 24),
-
             Container(
               padding: const EdgeInsets.all(24),
               decoration: BoxDecoration(
@@ -89,7 +109,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(height: 28),
-
             const Text(
               'Öne Çıkan Ürünler',
               style: TextStyle(
@@ -98,7 +117,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(height: 16),
-
             FutureBuilder<List<Product>>(
               future: _productsFuture,
               builder: (context, snapshot) {
@@ -147,6 +165,7 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     return ProductCard(
                       product: filteredProducts[index],
+                      onAddToCart: _addToCart,
                     );
                   },
                 );

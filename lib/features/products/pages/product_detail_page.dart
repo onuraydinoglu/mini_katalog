@@ -4,10 +4,12 @@ import 'package:mini_katalog/features/products/models/product.dart';
 
 class ProductDetailPage extends StatelessWidget {
   final Product product;
+  final void Function(Product) onAddToCart;
 
   const ProductDetailPage({
     super.key,
     required this.product,
+    required this.onAddToCart,
   });
 
   @override
@@ -45,7 +47,6 @@ class ProductDetailPage extends StatelessWidget {
               },
             ),
             const SizedBox(height: 24),
-
             Text(
               product.name,
               style: const TextStyle(
@@ -54,7 +55,6 @@ class ProductDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-
             Text(
               product.tagline,
               style: const TextStyle(
@@ -63,7 +63,6 @@ class ProductDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-
             Text(
               '${product.price.toStringAsFixed(2)} ${product.currency}',
               style: TextStyle(
@@ -73,7 +72,6 @@ class ProductDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-
             const Text(
               'Açıklama',
               style: TextStyle(
@@ -82,12 +80,28 @@ class ProductDetailPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-
             Text(
               product.description,
               style: const TextStyle(
                 fontSize: 14,
                 height: 1.5,
+              ),
+            ),
+            const SizedBox(height: 24),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  onAddToCart(product);
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Ürün sepete eklendi'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                },
+                child: const Text('Sepete Ekle'),
               ),
             ),
           ],
