@@ -46,7 +46,9 @@ class ProductDetailPage extends StatelessWidget {
                 );
               },
             ),
+
             const SizedBox(height: 24),
+
             Text(
               product.name,
               style: const TextStyle(
@@ -54,7 +56,9 @@ class ProductDetailPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+
             const SizedBox(height: 8),
+
             Text(
               product.tagline,
               style: const TextStyle(
@@ -62,7 +66,9 @@ class ProductDetailPage extends StatelessWidget {
                 fontSize: 14,
               ),
             ),
+
             const SizedBox(height: 16),
+
             Text(
               '${product.price.toStringAsFixed(2)} ${product.currency}',
               style: TextStyle(
@@ -71,7 +77,9 @@ class ProductDetailPage extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
+
             const SizedBox(height: 24),
+
             const Text(
               'Açıklama',
               style: TextStyle(
@@ -79,7 +87,9 @@ class ProductDetailPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
+
             const SizedBox(height: 8),
+
             Text(
               product.description,
               style: const TextStyle(
@@ -87,7 +97,49 @@ class ProductDetailPage extends StatelessWidget {
                 height: 1.5,
               ),
             ),
+
+            if (product.specs.isNotEmpty) ...[
+              const SizedBox(height: 24),
+
+              const Text(
+                'Teknik Özellikler',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 12),
+
+              ...product.specs.entries.map((entry) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Text(
+                          entry.key,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 3,
+                        child: Text(
+                          entry.value.toString(),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }),
+            ],
+
             const SizedBox(height: 24),
+
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
