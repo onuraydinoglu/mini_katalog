@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:mini_katalog/features/products/data/product_repository.dart';
 import 'package:mini_katalog/features/products/models/product.dart';
@@ -85,17 +84,13 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 28),
             const Text(
               'Öne Çıkan Ürünler',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
             FutureBuilder<List<Product>>(
               future: _productsFuture,
               builder: (context, snapshot) {
-                if (snapshot.connectionState !=
-                    ConnectionState.done) {
+                if (snapshot.connectionState != ConnectionState.done) {
                   return const Center(
                     child: Padding(
                       padding: EdgeInsets.all(24),
@@ -106,35 +101,28 @@ class _HomePageState extends State<HomePage> {
 
                 if (snapshot.hasError) {
                   return const Center(
-                    child: Text(
-                      'Ürünler yüklenirken bir hata oluştu.',
-                    ),
+                    child: Text('Ürünler yüklenirken bir hata oluştu.'),
                   );
                 }
 
                 final products = snapshot.data ?? [];
 
                 if (products.isEmpty) {
-                  return const Center(
-                    child: Text('Henüz ürün bulunmuyor.'),
-                  );
+                  return const Center(child: Text('Henüz ürün bulunmuyor.'));
                 }
 
                 return GridView.builder(
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: products.length,
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 12,
-                        mainAxisSpacing: 12,
-                        childAspectRatio: 0.85,
-                      ),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                    childAspectRatio: 0.85,
+                  ),
                   itemBuilder: (context, index) {
-                    return ProductCard(
-                      product: products[index],
-                    );
+                    return ProductCard(product: products[index]);
                   },
                 );
               },

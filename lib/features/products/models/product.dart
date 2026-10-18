@@ -1,40 +1,51 @@
-
 class Product {
   final int id;
-  final String title;
+  final String name;
+  final String tagline;
   final String description;
   final double price;
-  final String category;
+  final String currency;
   final String image;
+  final Map<String, dynamic> specs;
 
   const Product({
     required this.id,
-    required this.title,
+    required this.name,
+    required this.tagline,
     required this.description,
     required this.price,
-    required this.category,
+    required this.currency,
     required this.image,
+    required this.specs,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
+    final priceText = (json['price'] as String)
+        .replaceAll('\$', '')
+        .replaceAll(',', '');
+
     return Product(
       id: (json['id'] as num).toInt(),
-      title: json['title'] as String,
+      name: json['name'] as String,
+      tagline: json['tagline'] as String,
       description: json['description'] as String,
-      price: (json['price'] as num).toDouble(),
-      category: json['category'] as String,
+      price: double.parse(priceText),
+      currency: json['currency'] as String,
       image: json['image'] as String,
+      specs: Map<String, dynamic>.from(json['specs'] as Map),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'id': id,
-      'title': title,
+      'name': name,
+      'tagline': tagline,
       'description': description,
-      'price': price,
-      'category': category,
+      'price': '\$${price.toStringAsFixed(2)}',
+      'currency': currency,
       'image': image,
+      'specs': specs,
     };
   }
 }
