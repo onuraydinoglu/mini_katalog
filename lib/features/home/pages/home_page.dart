@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:mini_katalog/features/cart/pages/cart_page.dart';
 import 'package:mini_katalog/features/products/data/product_repository.dart';
@@ -31,13 +30,18 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void _removeFromCart(int index) {
+    setState(() {
+      _cartProducts.removeAt(index);
+    });
+  }
+
   void _openCart() {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => CartPage(
-          products: _cartProducts,
-        ),
+        builder: (context) =>
+            CartPage(products: _cartProducts, onRemove: _removeFromCart),
       ),
     );
   }
@@ -48,9 +52,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text(
           'Mini Katalog',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: false,
         actions: [
@@ -86,10 +88,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               width: double.infinity,
               height: 100,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12,
-                vertical: 10,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(16),
@@ -119,10 +118,7 @@ class _HomePageState extends State<HomePage> {
 
             const Text(
               'Öne Çıkan Ürünler',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
 
             const SizedBox(height: 16),
@@ -131,25 +127,19 @@ class _HomePageState extends State<HomePage> {
               future: _productsFuture,
               builder: (context, snapshot) {
                 if (snapshot.connectionState != ConnectionState.done) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return const Center(child: CircularProgressIndicator());
                 }
 
                 if (snapshot.hasError) {
                   return const Center(
-                    child: Text(
-                      'Ürünler yüklenirken bir hata oluştu.',
-                    ),
+                    child: Text('Ürünler yüklenirken bir hata oluştu.'),
                   );
                 }
 
                 final products = snapshot.data ?? [];
 
                 final filteredProducts = products.where((product) {
-                  return product.name.toLowerCase().contains(
-                    _searchQuery,
-                  );
+                  return product.name.toLowerCase().contains(_searchQuery);
                 }).toList();
 
                 if (filteredProducts.isEmpty) {
@@ -165,13 +155,12 @@ class _HomePageState extends State<HomePage> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: filteredProducts.length,
-                  gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 12,
-                        mainAxisSpacing: 12,
-                        childAspectRatio: 0.85,
-                      ),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 12,
+                    mainAxisSpacing: 12,
+                    childAspectRatio: 0.85,
+                  ),
                   itemBuilder: (context, index) {
                     return ProductCard(
                       product: filteredProducts[index],

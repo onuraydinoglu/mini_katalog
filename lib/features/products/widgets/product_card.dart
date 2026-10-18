@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:mini_katalog/features/products/models/product.dart';
 import 'package:mini_katalog/features/products/pages/product_detail_page.dart';
@@ -23,10 +22,8 @@ class ProductCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ProductDetailPage(
-              product: product,
-              onAddToCart: onAddToCart,
-            ),
+            builder: (context) =>
+                ProductDetailPage(product: product, onAddToCart: onAddToCart),
           ),
         );
       },
@@ -36,9 +33,7 @@ class ProductCard extends StatelessWidget {
         color: colorScheme.surface,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
-          side: BorderSide(
-            color: colorScheme.outlineVariant,
-          ),
+          side: BorderSide(color: colorScheme.outlineVariant),
         ),
         clipBehavior: Clip.antiAlias,
         child: Padding(
@@ -71,9 +66,7 @@ class ProductCard extends StatelessWidget {
                         return child;
                       }
 
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
+                      return const Center(child: CircularProgressIndicator());
                     },
                   ),
                 ),

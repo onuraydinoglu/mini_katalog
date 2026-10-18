@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:mini_katalog/features/products/models/product.dart';
 
@@ -38,10 +37,7 @@ class ProductDetailPage extends StatelessWidget {
                 return const SizedBox(
                   height: 250,
                   child: Center(
-                    child: Icon(
-                      Icons.image_not_supported_outlined,
-                      size: 60,
-                    ),
+                    child: Icon(Icons.image_not_supported_outlined, size: 60),
                   ),
                 );
               },
@@ -51,20 +47,14 @@ class ProductDetailPage extends StatelessWidget {
 
             Text(
               product.name,
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
 
             const SizedBox(height: 8),
 
             Text(
               product.tagline,
-              style: const TextStyle(
-                color: Colors.grey,
-                fontSize: 14,
-              ),
+              style: const TextStyle(color: Colors.grey, fontSize: 14),
             ),
 
             const SizedBox(height: 16),
@@ -82,20 +72,14 @@ class ProductDetailPage extends StatelessWidget {
 
             const Text(
               'Açıklama',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
 
             const SizedBox(height: 8),
 
             Text(
               product.description,
-              style: const TextStyle(
-                fontSize: 14,
-                height: 1.5,
-              ),
+              style: const TextStyle(fontSize: 14, height: 1.5),
             ),
 
             if (product.specs.isNotEmpty) ...[
@@ -103,10 +87,7 @@ class ProductDetailPage extends StatelessWidget {
 
               const Text(
                 'Teknik Özellikler',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
 
               const SizedBox(height: 12),
@@ -121,17 +102,10 @@ class ProductDetailPage extends StatelessWidget {
                         flex: 2,
                         child: Text(
                           entry.key,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style: const TextStyle(fontWeight: FontWeight.w600),
                         ),
                       ),
-                      Expanded(
-                        flex: 3,
-                        child: Text(
-                          entry.value.toString(),
-                        ),
-                      ),
+                      Expanded(flex: 3, child: Text(entry.value.toString())),
                     ],
                   ),
                 );
