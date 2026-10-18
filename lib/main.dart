@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:mini_katalog/app/app.dart';
 
